@@ -1,3 +1,10 @@
+# Scripts
+Base sripts for other utils
+
+```shell
+cp -r ~/dotfiles/scripts ~
+```
+
 # TMUX
 
 Install tmux on operational system like that:
