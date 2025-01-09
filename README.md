@@ -39,3 +39,11 @@ Example of .zshrc in repo
 ```shell
 cp -r ~/dotfiles/kitty ~/.config
 ```
+
+
+# Midnight Commander
+```shell
+mkdir -p ~/.local/share/mc/skins
+cp ~/dotfiles/mc/skins/* ~/.local/share/mc/skins
+cp ~/dotfiles/mc/ini ~/.config/mc
+```
