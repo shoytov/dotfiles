@@ -33,3 +33,9 @@ cp ~/dotfiles/.tmux.conf.local ~/.tmux.conf.local
 Install this plugin [https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md)
 
 Example of .zshrc in repo
+
+
+# Kitty
+```shell
+cp -r ~/dotfiles/kitty ~/.config
+```
