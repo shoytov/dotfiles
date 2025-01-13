@@ -53,3 +53,16 @@ cp ~/dotfiles/mc/ini ~/.config/mc
 ```shell
 cp -r ~/dotfiles/nvim/user/ ~/.config/nvim/lua 
 ```
+
+
+# Lazydocker
+
+## MacOS
+```shell
+cp ~/dotfiles/lazydocker/config.yml ~/Library/Application\ Support/Lazydocker/config.yml
+```
+
+## Linux
+```shell
+cp ~/dotfiles/lazydocker/config.yml ~/.config/lazydocker/config.yml
+```
