@@ -66,3 +66,13 @@ cp ~/dotfiles/lazydocker/config.yml ~/Library/Application\ Support/Lazydocker/co
 ```shell
 cp ~/dotfiles/lazydocker/config.yml ~/.config/lazydocker/config.yml
 ```
+
+# Lazygit
+```shell
+cp -r ~/dotfiles/lazygit/ ~/.config/
+```
+
+# AiChat
+```shell
+cp -r ~/dotfiles/aichat ~/.config
+```

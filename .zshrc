@@ -129,6 +129,7 @@ alias spoofdpi="~/byedpi/ciadpi --oob 1"
 alias mc="mc -u"
 
 export EDITOR=nvim
+export CLOUDFLARE_API_KEY=$(keyring get cloudflare CLOUDFLARE_API_KEY)
 
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"

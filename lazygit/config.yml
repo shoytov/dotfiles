@@ -1,0 +1,54 @@
+customCommands:
+  - key: <c-a>
+    description: Pick AI commit
+    command: |
+      aichat "Please suggest commit message, given the following git status:
+
+        \`\`\`diff
+        $(git status)
+        \`\`\`
+
+        **Commit Message Examples:**
+
+        Changes to commit:
+          added:
+            - some files/classes/methods added
+          removed:
+            - some files/classes/methods removed
+          modified:
+            - some files/classes/methods modified
+          moved:
+            - some files/classes/methods moved
+
+        **Output Template**
+        Follow this output template and ONLY output raw commit messages without spacing,
+        line beaks, numbers or other decorations.
+
+        \`\`\`
+        $(cat .git/.template)
+        \`\`\`
+
+
+        **Recent Commits on Repo for Reference:**
+
+        \`\`\`
+        $(git log -n 5 --pretty=format:'%h %s')
+        \`\`\`
+
+        Write your commit message below in the format shown in Output Template section above." |
+        awk 'BEGIN {RS="---"; ORS="\0"} NF {sub(/^\n+/, ""); print}' |
+        fzf --height 20 --border --ansi --read0 --no-sort --preview 'echo {} | sed "s/\x0/\n---\n/g"' --with-nth=1 --delimiter='\n' --preview-window=up:wrap |
+        xargs -0 -I {} bash -c '
+          COMMIT_MSG_FILE=$(mktemp)
+          printf "%s" "$1" > "$COMMIT_MSG_FILE"
+          MOD_TIME_BEFORE=$(stat -c %Y "$COMMIT_MSG_FILE")
+          ${EDITOR:-nvim} "$COMMIT_MSG_FILE"
+          MOD_TIME_AFTER=$(stat -c %Y "$COMMIT_MSG_FILE")
+          if [ "$MOD_TIME_BEFORE" -ne "$MOD_TIME_AFTER" ]; then
+            git commit -F "$COMMIT_MSG_FILE"
+          else
+            echo "Commit message was not saved, commit aborted."
+      fi
+      rm -f "$COMMIT_MSG_FILE"' _ {}
+    context: files
+    subprocess: true
