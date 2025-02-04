@@ -35,7 +35,7 @@ customCommands:
         $(git log -n 5 --pretty=format:'%h %s')
         \`\`\`
 
-        Write your commit message below in the format shown in Output Template section above." |
+        Write your commit message below in the format shown in Output Template section above. Please more detailed." |
         awk 'BEGIN {RS="---"; ORS="\0"} NF {sub(/^\n+/, ""); print}' |
         fzf --height 20 --border --ansi --read0 --no-sort --preview 'echo {} | sed "s/\x0/\n---\n/g"' --with-nth=1 --delimiter='\n' --preview-window=up:wrap |
         xargs -0 -I {} bash -c '
