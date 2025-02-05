@@ -5,8 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-cowsay -f daemon Ha-Ha-Ha!!!
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -124,15 +122,18 @@ source $ZSH/oh-my-zsh.sh
 
 alias ls="lsd"
 alias cat="bat"
-alias pbcopy='xsel --clipboard --input'
+alias pbcopy="xsel --clipboard --input"
 alias spoofdpi="~/byedpi/ciadpi --oob 1"
 alias mc="mc -u"
+alias fastfetch="fastfetch | lolcat"
 
 export EDITOR=nvim
 export CLOUDFLARE_API_KEY=$(keyring get cloudflare CLOUDFLARE_API_KEY)
 
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+cowsay -f daemon Ha-Ha-Ha!!! | lolcat
 
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
