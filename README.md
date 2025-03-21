@@ -1,4 +1,5 @@
 # Scripts
+
 Base sripts for other utils
 
 ```shell
@@ -21,6 +22,7 @@ sudo pacman -S tmux
 etc.
 
 ## Config
+
 ```
 cd
 git clone --single-branch https://github.com/gpakosz/.tmux.git
@@ -34,45 +36,54 @@ Install this plugin [https://github.com/zsh-users/zsh-syntax-highlighting/blob/m
 
 Example of .zshrc in repo
 
-
 # Kitty
+
 ```shell
 cp -r ~/dotfiles/kitty ~/.config
 ```
 
-
 # Midnight Commander
+
 ```shell
 mkdir -p ~/.local/share/mc/skins
 cp ~/dotfiles/mc/skins/* ~/.local/share/mc/skins
 cp ~/dotfiles/mc/ini ~/.config/mc
 ```
 
-
 # Neovim
-```shell
-cp -r ~/dotfiles/nvim/user/ ~/.config/nvim/lua 
-```
 
+```shell
+cp -r ~/dotfiles/nvim/user/ ~/.config/nvim/lua
+```
 
 # Lazydocker
 
 ## MacOS
+
 ```shell
 cp ~/dotfiles/lazydocker/config.yml ~/Library/Application\ Support/Lazydocker/config.yml
 ```
 
 ## Linux
+
 ```shell
 cp ~/dotfiles/lazydocker/config.yml ~/.config/lazydocker/config.yml
 ```
 
 # Lazygit
+
 ```shell
 cp -r ~/dotfiles/lazygit/ ~/.config/
 ```
 
 # AiChat
+
 ```shell
 cp -r ~/dotfiles/aichat ~/.config
+```
+
+# Zed Editor
+
+```shell
+cp -r ~/dotfiles/zed ~/.config
 ```
