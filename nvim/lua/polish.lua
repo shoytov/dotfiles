@@ -1,6 +1,9 @@
 vim.api.nvim_create_autocmd("BufEnter", {
-  command = "set nornu nu",
-  command = "set colorcolumn=100",
+  callback = function()
+    vim.wo.number = true
+    vim.wo.relativenumber = false
+    vim.wo.colorcolumn = "100"  -- Устанавливаем colorcolumn
+  end,
 })
 -- This will run last in the setup process.
 -- This is just pure lua so anything that doesn't
