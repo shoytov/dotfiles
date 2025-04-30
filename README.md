@@ -72,8 +72,14 @@ cp ~/dotfiles/lazydocker/config.yml ~/.config/lazydocker/config.yml
 
 # Lazygit
 
+## Linux
 ```shell
-cp -r ~/dotfiles/lazygit/ ~/.config/
+cp ~/dotfiles/lazygit/linux/config.yml ~/.config/lazygit/config.yml
+```
+
+## MacOS
+```shell
+cp ~/dotfiles/lazygit/MacOS/config.yml ~/Library/Application\ Support/Lazygit/config.yml
 ```
 
 # AiChat
