@@ -1,7 +1,11 @@
 # see https://github.com/sigoden/aichat/blob/main/config.example.yaml
 
-model: cloudflare
 clients:
-- type: openai-compatible
-  name: cloudflare
-  api_base: https://api.cloudflare.com/client/v4/accounts/01fdd480aaf4e9d99a9ec1609fc00cba/ai/v1
+  - type: openai-compatible
+    name: cloudflare
+    api_base: https://api.cloudflare.com/client/v4/accounts/01fdd480aaf4e9d99a9ec1609fc00cba/ai/v1
+
+  - type: openai-compatible
+    name: deepseek
+    api_base: http://127.0.0.1:1234/v1
+

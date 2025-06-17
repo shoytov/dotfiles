@@ -5,20 +5,20 @@ customCommands:
       aichat "Please suggest commit message, given the following git status:
 
         \`\`\`diff
-        $(git status)
+        $(git diff --staged)
         \`\`\`
 
         **Commit Message Examples:**
 
         Changes to commit:
           added:
-            - some files/classes/methods added
+            - some new entities or methods
           removed:
-            - some files/classes/methods removed
+            - some old entities or methods or classes and etc.
           modified:
-            - some files/classes/methods modified
+            - some existing entities or methods or classes and etc.
           moved:
-            - some files/classes/methods moved
+            - some existing entities or classes and etc.
 
         **Output Template**
         Follow this output template and ONLY output raw commit messages without spacing,
@@ -48,4 +48,4 @@ customCommands:
               fi
               rm -f "$COMMIT_MSG_FILE"' _ {}
     context: files
-    subprocess: true
+    output: terminal
