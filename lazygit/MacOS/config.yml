@@ -2,40 +2,41 @@ customCommands:
   - key: <c-a>
     description: Pick AI commit
     command: |
-      aichat "Please suggest commit message, given the following git status:
+      aichat -m deepseek "Пожалуйста, напишите commit message для следующего коммита, используя результат команды git diff:
 
         \`\`\`diff
         $(git diff --staged)
         \`\`\`
 
-        **Commit Message Examples:**
+        **Пример сообщения коммита:**
 
-        Changes to commit:
+        Краткое описание изменений.
+
           added:
-            - some new entities or methods
+            - какие сущности, методы, классы или логика добавлены и т.д.
           removed:
-            - some old entities or methods or classes and etc.
+            - какие сущности, методы, классы или логика удалены и т.д.
           modified:
-            - some existing entities or methods or classes and etc.
+            - какие сущности, методы, классы или логика изменены и т.д.
           moved:
-            - some existing entities or classes and etc.
+            - какие сущности, методы, классы или логика перемещены и т.д.
 
-        **Output Template**
-        Follow this output template and ONLY output raw commit messages without spacing,
-        line beaks, numbers or other decorations.
+        **Выходной шаблон**
+        Обязательно используй этот шаблон, вывод которого ниже. Не используй переносы строк, лишние пробелы, лишние символы. Не украшай текст.
 
         \`\`\`
         $(cat .git/.template)
         \`\`\`
 
 
-        **Recent Commits on Repo for Reference:**
+        **Используй предыдущие коммиты для примера:**
 
         \`\`\`
         $(git log -n 5 --pretty=format:'%h %s')
         \`\`\`
 
-        Write your commit message below in the format shown in Output Template section above. Please more detailed. Comment each file change with the reason for the change."\
+        Напиши свой commit message строго соблюдая шаблон. Пиши на английском. В шаблоне обязательно должны быть заполнены все секции. 
+        Не углубляйся в детали, описывай только суть того, что поменялось или добавилось."\
           | fzf --height 40% --border --ansi --read0 --preview "echo {}" --preview-window=up:wrap \
           | xargs -0 -J {} bash -c '
               COMMIT_MSG_FILE=$(mktemp)
