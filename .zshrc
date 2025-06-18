@@ -8,6 +8,11 @@ fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
+command_not_found_handler() {
+    cowsay -f tux "LOL! Command not found: $1" | lolcat -a -s 150
+    return 127
+}
+
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
