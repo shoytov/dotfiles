@@ -1,0 +1,2 @@
+[tg_bot_ubuntu]
+locum ansible_host=31.192.109.44 ansible_user=root ansible_ssh_private_key_file=~/.ssh/id_rsa 

@@ -93,3 +93,9 @@ cp -r ~/dotfiles/aichat ~/.config
 ```shell
 cp -r ~/dotfiles/zed ~/.config
 ```
+
+# Ansible
+
+```shell
+cp ~/dotfiles/ansible/* ~/.ansible
+```

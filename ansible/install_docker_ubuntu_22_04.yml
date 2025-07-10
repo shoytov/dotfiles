@@ -1,0 +1,121 @@
+---
+- name: Install or update Docker and Docker Compose on Ubuntu 22.04
+  hosts: all
+  become: yes
+  vars:
+    docker_compose_version: "v2.27.0"  # Последняя стабильная версия Docker Compose
+    docker_compose_path: "/usr/local/bin/docker-compose"
+    docker_compose_cli_path: "/usr/libexec/docker/cli-plugins/docker-compose"
+
+  tasks:
+    # Обновление индексов пакетов
+    - name: Update apt package index
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    # Установка зависимостей
+    - name: Install required packages
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - software-properties-common
+        - gnupg-agent
+
+    # Добавление GPG ключа Docker
+    - name: Add Docker GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    # Добавление репозитория Docker
+    - name: Add Docker repository
+      apt_repository:
+        repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable"
+        state: present
+        filename: docker-ce
+
+    # Установка/обновление Docker CE
+    - name: Install or upgrade Docker CE
+      apt:
+        name: "{{ item }}"
+        state: latest
+        update_cache: yes
+      loop:
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+        - docker-buildx-plugin
+
+    # Добавление пользователя в группу docker
+    - name: Add user to docker group
+      user:
+        name: "{{ ansible_user }}"
+        groups: docker
+        append: yes
+
+    # Создание директории для CLI плагинов Docker
+    - name: Create Docker CLI plugins directory
+      file:
+        path: "/usr/libexec/docker/cli-plugins"
+        state: directory
+        mode: "0755"
+
+    # Скачивание Docker Compose (v2, как плагин Docker CLI)
+    - name: Download Docker Compose (v2)
+      get_url:
+        url: "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-linux-x86_64"
+        dest: "{{ docker_compose_cli_path }}"
+        mode: "0755"
+      register: download_compose
+
+    # Создание симлинка для обратной совместимости (docker-compose → docker compose)
+    - name: Create legacy symlink
+      file:
+        src: "{{ docker_compose_cli_path }}"
+        dest: "{{ docker_compose_path }}"
+        state: link
+        force: yes
+      when: download_compose.changed
+
+    # Перезагрузка демона Docker (если были изменения)
+    - name: Restart Docker daemon
+      service:
+        name: docker
+        state: restarted
+      when: download_compose.changed
+
+    # Проверка версии Docker
+    - name: Verify Docker version
+      command: docker --version
+      register: docker_version
+      changed_when: false
+
+    - name: Display Docker version
+      debug:
+        var: docker_version.stdout
+
+    # Проверка версии Docker Compose (v2)
+    - name: Verify Docker Compose version
+      command: docker compose version
+      register: docker_compose_version
+      changed_when: false
+
+    - name: Display Docker Compose version
+      debug:
+        var: docker_compose_version.stdout
+
+    # Проверка версии Docker Compose (legacy)
+    - name: Verify legacy Docker Compose version
+      command: docker-compose --version
+      register: docker_compose_legacy_version
+      changed_when: false
+      ignore_errors: yes
+
+    - name: Display legacy Docker Compose version
+      debug:
+        var: docker_compose_legacy_version.stdout
