@@ -11,4 +11,8 @@ return {
     "MattesGroeger/vim-bookmarks",
     event = "User AstroFile",
   },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    event = "User AstroFile",
+  }
 }
