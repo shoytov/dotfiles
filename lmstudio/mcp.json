@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "habr-article-fetcher": {
+      "command": "/opt/homebrew/bin/docker",
+      "args": [
+        "run",
+        "--rm",
+        "-i",
+        "habr_mcp",
+        "python",
+        "mcp_server.py"
+      ]
+    }
+  }
+}

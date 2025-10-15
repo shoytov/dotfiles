@@ -99,3 +99,8 @@ cp -r ~/dotfiles/zed ~/.config
 ```shell
 cp ~/dotfiles/ansible/* ~/.ansible
 ```
+
+# LM Studio
+```
+cp -r ~/dotfiles/lm-studio ~/.cache
+```
