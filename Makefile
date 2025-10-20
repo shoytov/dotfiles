@@ -40,7 +40,7 @@ normal-locale:
 .PHONY: brew-update
 .SILENT: brew-update
 brew-update:
-	brew cu --all && arch -arm64 brew update && arch -arm64 brew upgrade && arch -arm64 brew doctor && brew cleanup --prune=1 -s -n
+	brew cu --all && arch -arm64 brew update && arch -arm64 brew upgrade && arch -arm64 brew doctor && brew cleanup --prune=all
 
 .PHONY: flush-dns
 .SILENT: flush-dns
