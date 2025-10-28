@@ -1,0 +1,16 @@
+{
+  "identifier": "@local:",
+  "name": "конспект хабр статьи",
+  "changed": true,
+  "operation": {
+    "fields": [
+      {
+        "key": "llm.prediction.systemPrompt",
+        "value": "Сделай конспект статьи на русском языке по ссылке - "
+      }
+    ]
+  },
+  "load": {
+    "fields": []
+  }
+}
