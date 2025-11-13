@@ -25,6 +25,16 @@ docker-clean:
 	docker system prune -a -f
 	docker volume prune -f
 
+.PHONY: llm 
+.SILENT: llm 
+llm:
+	mcphost --model ollama:qwen3 --config ~/.mcphost.json
+
+.PHONY: summarize
+.SILENT: summarize
+summarize:
+	mcphost --model ollama:llama3.1:8b --config ~/.mcphost.json --system-prompt ~/.prompts/summarize.md
+
 # Linux only
 .PHONY: vpn-work
 .SILENT: vpn-work

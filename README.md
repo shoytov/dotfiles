@@ -104,3 +104,12 @@ cp ~/dotfiles/ansible/* ~/.ansible
 ```
 cp -r ~/dotfiles/lm-studio ~/.cache
 ```
+
+# MCP Host
+```
+cp ~/dotfiles/.mcphost.json ~/
+```
+
+```
+cp -r ~/dotfiles/.prompts ~/.prompts
+```

@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "habr-article-fetcher": {
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "-i",
+        "habr_mcp",
+        "python",
+        "mcp_server.py"
+      ]
+    }
+  }
+}
