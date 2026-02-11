@@ -53,7 +53,7 @@ cp ~/dotfiles/mc/ini ~/.config/mc
 # Neovim
 
 ```shell
-cp -r ~/dotfiles/nvim/user/ ~/.config/nvim/lua
+cp -r ~/dotfiles/nvim/ ~/.config/nvim/
 ```
 
 # Lazydocker
