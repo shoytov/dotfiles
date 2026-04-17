@@ -17,34 +17,3 @@ end
 
 require "lazy_setup"
 require "polish"
-
-require('lspconfig').pyright.setup {
-  settings = {
-    pyright = {
-      -- Using Ruff's import organizer
-      disableOrganizeImports = true,
-    },
-    python = {
-      analysis = {
-        -- Ignore all files for analysis to exclusively use Ruff for linting
-        ignore = { '*' },
-      },
-    },
-  },
-}
-
-require('lspconfig').ruff.setup({
-  init_options = {
-    settings = {
-      -- Ruff language server settings go here
-      enable = true,
-      ignoreStandardLibrary = true,
-      fixAll = true,
-      organizeImports = true,
-      lineLength = 100,
-      lint = {
-        extendSelect = { "I" },
-      },
-    }
-  }
-})
